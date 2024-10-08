@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -17,7 +18,6 @@ class _InsertDataState extends State<InsertData> {
   TextEditingController nameController = TextEditingController();
   TextEditingController modelController = TextEditingController();
   TextEditingController imageController = TextEditingController();
-  TextEditingController Controller = TextEditingController();
 
   bool isloading = false;
 
@@ -45,18 +45,19 @@ class _InsertDataState extends State<InsertData> {
             children: [
 
               SizedBox(height: 20,width: 20),
-              TextFormField(
-                controller: nameController,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return "Enter Name";
+              TextFormField(decoration: InputDecoration(labelText: "Enter Name"),
+                  controller: nameController,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return "Enter Name";
+                    }
                   }
-                }
-           ),
+              ),
+
               SizedBox(
                 height: 20,
               ),
-              TextFormField(
+              TextFormField(decoration: InputDecoration(labelText: "Enter Colour"),
                 controller: modelController,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -65,11 +66,11 @@ class _InsertDataState extends State<InsertData> {
                 },
               ),
               SizedBox(
-                height: 20,width: 20
+                  height: 20,width: 20
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: TextFormField(
+                child: TextFormField(decoration: InputDecoration(labelText: "Enter Img URL"),
                   controller: imageController,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -108,7 +109,8 @@ class _InsertDataState extends State<InsertData> {
                       borderRadius: BorderRadius.circular(15),
                     ),
                     child: Center(
-                      child: isloading?CircularProgressIndicator():Text('Submit', style: TextStyle(color: Colors.white),),
+                      child: isloading?CircularProgressIndicator():
+                      Text('Submit', style: TextStyle(color: Colors.white),),
                     ),
                   ),
                 ),
